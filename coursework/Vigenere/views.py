@@ -3,7 +3,7 @@ from django.http import HttpResponseRedirect
 from .models import Person, UserAndMessage
 from django.db.utils import IntegrityError
 from django.contrib import messages
-from .forms import ShiphrForm
+from .forms import CipherForm
 
 
 def RegistrationTemplate(request):
@@ -30,7 +30,7 @@ def Registration(request):
 
 
 def EncryptedTemplate(request):
-    form = ShiphrForm()
+    form = CipherForm()
     data = {
         'form': form
     }
@@ -38,7 +38,7 @@ def EncryptedTemplate(request):
 
 
 def AuthEncMes(request):
-    form = ShiphrForm(request.POST)
+    form = CipherForm(request.POST)
     if request.method == "POST" and form.is_valid():
         username = request.POST.get("Log")
         password = request.POST.get("pass")
