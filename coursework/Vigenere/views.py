@@ -63,10 +63,7 @@ def AuthEncMes(request):
 
 
 def msg_and_key(msg, key):
-    if msg == '' or key == '':
-        key_map = 'Error'
-        return key_map
-    elif msg < key:
+    if msg == '' or key == '' or msg < key:
         key_map = 'Error'
         return key_map
     else:
