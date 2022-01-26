@@ -47,11 +47,15 @@ def AuthEncMes(request):
             if checkUserLogin is not None:
                 msg = form.cleaned_data['Mess']
                 key = form.cleaned_data['Key']
-                mapped_key = msg_and_key(msg, key)
-                EncMes = cipher_encryption(msg, mapped_key)
-                crt = UserAndMessage.objects.create(EncryptMessage=EncMes, Mess=msg, UserId=checkUserLogin.id)
-                messages.success(request, "Your encrypted message: " + EncMes)
-                return HttpResponseRedirect('encrypt')
+                mapped_key = msg_and_key(msg, key)                
+                if mapped_key == 'Error':
+                    messages.error(request, 'Incorrect message or key')
+                    return HttpResponseRedirect('encrypt')
+                else:
+                    EncMes = cipher_encryption(msg, mapped_key)
+                    crt = UserAndMessage.objects.create(EncryptMessage=EncMes, Mess=msg, UserId=checkUserLogin.id)
+                    messages.success(request, "Your encrypted message: " + EncMes)
+                    return HttpResponseRedirect('encrypt')
         except Person.DoesNotExist:
             messages.error(request, "Wrong login or password")
             return HttpResponseRedirect('encrypt')
