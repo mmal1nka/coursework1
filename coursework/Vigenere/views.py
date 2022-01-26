@@ -53,7 +53,7 @@ def AuthEncMes(request):
                     return HttpResponseRedirect('encrypt')
                 else:
                     EncMes = cipher_encryption(mess, mapped_key)
-                    crt = UserAndMessage.objects.create(EncryptMessage=EncMes, Mess=msg, UserId=checkUserLogin.id)
+                    crt = UserAndMessage.objects.create(EncryptMessage=EncMes, Mess=mess, UserId=checkUserLogin.id)
                     messages.success(request, "Your encrypted message: " + EncMes)
                     return HttpResponseRedirect('encrypt')
         except Person.DoesNotExist:
