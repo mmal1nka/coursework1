@@ -1,0 +1,35 @@
+{% load static %}
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<title>encrypter</title>
+<!— указываем ссылку на css file-->
+<link rel="stylesheet" href="{% static 'Vigenere/css/encrypter1.css' %}">
+</head>
+<body>
+<div class="ribbon"></div>
+  <h2>The Vigener Cipher</h2>
+  <div class="login">
+  <form action="AuthEncMes" method="POST">
+      {% csrf_token %}
+    <div class="input">
+      <div class="blockinput">
+        <i class="icon-envelope-alt"></i><input type="text" placeholder="Login" name="Log" id="Log">
+      </div>
+      <div class="blockinput">
+        <i class="icon-unlock"></i><input type="password" placeholder="Password" name="pass" id="pass">
+      </div>
+      {{form.Mess}}
+       {{form.Key}}
+            {% if messages %}
+            <ul class="messages">
+                {% for message in messages %}
+                    <br {% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</br>
+                {% endfor %}
+            </ul>
+        {% endif %}
+    </div>
+    <button type="submit" id="butt">Encrypt</button>
+    <a href="http://127.0.0.1:8000/" id="toRegistration">Close</a>
+  </form>
+  </div>
+</body>
+</html>

@@ -1,0 +1,40 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport"
+content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<title>Registration</title>
+<!— указываем ссылку на css file-->
+<link rel="stylesheet" href="{% static 'Vigenere/css/reg.css' %}">
+</head>
+<body>
+<div class="ribbon"></div>
+  <div class="login">
+  <h1>Registration</h1>
+  <p>This will be an amazing experience</p>
+  <form action="Registration" method="POST">
+      {% csrf_token %}
+    <div class="input">
+      <div class="blockinput">
+        <i class="icon-envelope-alt"></i><input type="text" placeholder="Login" name="username" id="username">
+      </div>
+      <div class="blockinput">
+        <i class="icon-unlock"></i><input type="password" placeholder="Password" name="pass" id="pass">
+      </div>
+        {% if messages %}
+            <ul class="messages">
+                {% for message in messages %}
+                    <br {% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</br>
+                {% endfor %}
+            </ul>
+        {% endif %}
+    </div>
+    <button type="submit">Login</button>
+      <a href="encrypt" id="toAuthorize">Already have an account? Click here.</a>
+  </form>
+  </div>
+</body>
+</html>
