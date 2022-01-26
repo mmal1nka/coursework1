@@ -45,14 +45,14 @@ def AuthEncMes(request):
         try:
             checkUserLogin = Person.objects.get(Login=username, Password=password)
             if checkUserLogin is not None:
-                msg = form.cleaned_data['Mess']
+                mess = form.cleaned_data['Mess']
                 key = form.cleaned_data['Key']
-                mapped_key = msg_and_key(msg, key)                
+                mapped_key = msg_and_key(mess, key)                
                 if mapped_key == 'Error':
                     messages.error(request, 'Incorrect message or key')
                     return HttpResponseRedirect('encrypt')
                 else:
-                    EncMes = cipher_encryption(msg, mapped_key)
+                    EncMes = cipher_encryption(mess, mapped_key)
                     crt = UserAndMessage.objects.create(EncryptMessage=EncMes, Mess=msg, UserId=checkUserLogin.id)
                     messages.success(request, "Your encrypted message: " + EncMes)
                     return HttpResponseRedirect('encrypt')
