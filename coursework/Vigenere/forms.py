@@ -1,7 +1,7 @@
 from django import forms
 
 
-class ShiphrForm(forms.Form):
+class CipherForm(forms.Form):
     Mess = forms.CharField(max_length=1000, required=False)
     Key = forms.CharField(max_length=1000, required=False)
     EncryptedMessage = forms.CharField(max_length=1000, required=False)
