@@ -125,8 +125,6 @@ def cipher_encryption(message, mapped_key):
     table = create_vigenere_table()
     table1 = create_vigenere_table_1()
     encrypted_text = ""
-    if mapped_key == 'Error':
-        return encrypted_text
     for i in range(len(message)):
         if 122 >= ord(message[i]) >= 97:
             row = ord(message[i]) - 97
